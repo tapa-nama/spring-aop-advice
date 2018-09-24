@@ -1,6 +1,7 @@
 package com.thoughtworks.grad.concretepage.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
@@ -20,10 +21,16 @@ public class TimeLoggingAspect {
 //        System.out.println("@After:" + new Date());
 //    }
 
-    @Around("execution(* com.thoughtworks.grad.concretepage.service.*.*(..))")
-    public void userAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("@Around: Before calculation-" + new Date());
-        joinPoint.proceed();
-        System.out.println("@Around: After calculation-" + new Date());
+//    @Around("execution(* com.thoughtworks.grad.concretepage.service.*.*(..))")
+//    public void userAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
+//        System.out.println("@Around: Before calculation-" + new Date());
+//        joinPoint.proceed();
+//        System.out.println("@Around: After calculation-" + new Date());
+//    }
+
+    @AfterReturning(pointcut = "execution(* com.thoughtworks.grad.concretepage.service.*.*(..))", returning = "obj")
+    public void logAfterReturning(Object obj) {
+        System.out.println("Method return value:" + obj);
+        System.out.println("@AfterReturning:" + new Date());
     }
 }
