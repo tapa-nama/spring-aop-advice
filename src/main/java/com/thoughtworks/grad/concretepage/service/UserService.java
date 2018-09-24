@@ -9,4 +9,10 @@ public class UserService {
         System.out.println(a + "*" + b + "= " + result);
         return result;
     }
+
+    public Integer divide(int a, int b) {
+        int result = a / b;
+        System.out.println(a + "/" + b + "= " + result);
+        return result;
+    }
 }

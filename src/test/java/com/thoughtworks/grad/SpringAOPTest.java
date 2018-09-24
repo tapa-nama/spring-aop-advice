@@ -9,6 +9,7 @@ public class SpringAOPTest {
         applicationContext.register(AspectConfig.class);
         applicationContext.refresh();
         UserService userService = applicationContext.getBean(UserService.class);
-        userService.multiply(2, 3);
+//        userService.multiply(2, 3);
+        userService.divide(1, 0);
     }
 }

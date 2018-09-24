@@ -1,8 +1,7 @@
 package com.thoughtworks.grad.concretepage.aspect;
 
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
@@ -32,5 +31,11 @@ public class TimeLoggingAspect {
     public void logAfterReturning(Object obj) {
         System.out.println("Method return value:" + obj);
         System.out.println("@AfterReturning:" + new Date());
+    }
+
+    @AfterThrowing(pointcut = "execution(* com.thoughtworks.grad.concretepage.service.*.*(..))", throwing = "e")
+    public void logAfterThrowing(Exception e) {
+        System.out.println("@AfterReturning:" + new Date());
+        System.out.println("Exception caught:" + e.getMessage());
     }
 }
