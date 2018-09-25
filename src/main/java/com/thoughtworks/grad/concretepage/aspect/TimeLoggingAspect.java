@@ -10,14 +10,14 @@ import java.util.Date;
 @Component
 @Aspect
 public class TimeLoggingAspect {
-    @Before("execution(* com.thoughtworks.grad.concretepage.service.*.*(..))")
+    @Before("execution(* com.thoughtworks.grad.concretepage.service.*.add(..))")
     public void logBefore() {
-        Logger.log("@Before:");
+        Logger.log("@Before");
     }
 
-    @After("execution(* com.thoughtworks.grad.concretepage.service.*.*(..))")
+    @After("execution(* com.thoughtworks.grad.concretepage.service.*.subtract(..))")
     public void logAfter() {
-        System.out.println("@After:" + new Date());
+        Logger.log("@After");
     }
 
     @Around("execution(* com.thoughtworks.grad.concretepage.service.*.*(..))")

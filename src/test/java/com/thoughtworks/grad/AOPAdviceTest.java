@@ -28,6 +28,7 @@ public class AOPAdviceTest {
     @BeforeEach
     void setUp() {
         mockMvc = webAppContextSetup(webApplicationContext).build();
+        Logger.clear();
     }
 
     @Autowired
@@ -35,7 +36,15 @@ public class AOPAdviceTest {
 
     @Test
     void should_execute_before_joinPint() {
-        userService.multiply(2, 3);
-        Assert.assertEquals(Arrays.asList("@Before:", "2 * 3 = 6"), Logger.getLogs());
+        userService.add(2, 3);
+        Assert.assertEquals(Arrays.asList("@Before", "2 + 3 = 5"), Logger.getLogs());
+    }
+
+    @Test
+    void should_execute_after_joinPoint() {
+
+        userService.subtract(3, 2);
+        Assert.assertEquals(Arrays.asList("3 - 2 = 1", "@After"), Logger.getLogs());
+
     }
 }
