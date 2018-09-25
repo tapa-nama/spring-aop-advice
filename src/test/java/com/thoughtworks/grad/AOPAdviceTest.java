@@ -42,9 +42,14 @@ public class AOPAdviceTest {
 
     @Test
     void should_execute_after_joinPoint() {
-
         userService.subtract(3, 2);
         Assert.assertEquals(Arrays.asList("3 - 2 = 1", "@After"), Logger.getLogs());
+    }
+
+    @Test
+    void should_execute_around_joinPint() {
+        userService.multiply(3, 3);
+        Assert.assertEquals(Arrays.asList("@Around: Before calculation-", "3 * 3 = 9", "@Around: After calculation-"), Logger.getLogs());
 
     }
 }

@@ -20,11 +20,11 @@ public class TimeLoggingAspect {
         Logger.log("@After");
     }
 
-    @Around("execution(* com.thoughtworks.grad.concretepage.service.*.*(..))")
+    @Around("execution(* com.thoughtworks.grad.concretepage.service.*.multiply(..))")
     public void userAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("@Around: Before calculation-" + new Date());
+        Logger.log("@Around: Before calculation-");
         joinPoint.proceed();
-        System.out.println("@Around: After calculation-" + new Date());
+        Logger.log("@Around: After calculation-");
     }
 
     @AfterReturning(pointcut = "execution(* com.thoughtworks.grad.concretepage.service.*.*(..))", returning = "obj")
