@@ -27,13 +27,13 @@ public class TimeLoggingAspect {
         Logger.log("@Around: After calculation-");
     }
 
-    @AfterReturning(pointcut = "execution(* com.thoughtworks.grad.concretepage.service.*.*(..))", returning = "obj")
+    @AfterReturning(pointcut = "execution(* com.thoughtworks.grad.concretepage.service.*.divide(..))", returning = "obj")
     public void logAfterReturning(Object obj) {
-        System.out.println("Method return value:" + obj);
-        System.out.println("@AfterReturning:" + new Date());
+        Logger.log("Method return value: " + obj);
+        Logger.log("@AfterReturning:");
     }
 
-    @AfterThrowing(pointcut = "execution(* com.thoughtworks.grad.concretepage.service.*.*(..))", throwing = "e")
+    @AfterThrowing(pointcut = "execution(* com.thoughtworks.grad.concretepage.service.*.divide(..))", throwing = "e")
     public void logAfterThrowing(Exception e) {
         System.out.println("@AfterReturning:" + new Date());
         System.out.println("Exception caught:" + e.getMessage());

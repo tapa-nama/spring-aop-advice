@@ -50,6 +50,12 @@ public class AOPAdviceTest {
     void should_execute_around_joinPint() {
         userService.multiply(3, 3);
         Assert.assertEquals(Arrays.asList("@Around: Before calculation-", "3 * 3 = 9", "@Around: After calculation-"), Logger.getLogs());
+    }
+
+    @Test
+    void should_returning_after_joinPoint() {
+        userService.divide(8, 4);
+        Assert.assertEquals(Arrays.asList("Method return value: 3", "@AfterReturning:"), Logger.getLogs());
 
     }
 }
